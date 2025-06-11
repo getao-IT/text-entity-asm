@@ -1,2 +1,2 @@
-# text_entity_asm
+# text-entity-asm
 text entity assessment
