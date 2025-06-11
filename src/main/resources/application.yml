@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: entity-evaluate
+server:
+  port: 31501
