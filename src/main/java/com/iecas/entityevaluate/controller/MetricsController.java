@@ -42,4 +42,17 @@ public class MetricsController {
         SubMetricsResult result = EntityMetricsUtils.calculateLightMetrics(dto.getTrueFilePath(), dto.getPredFilePath());
         return new CommonResult().data(result).success();
     }
+
+
+    /**
+     *  @author: getao
+     *  @Date: 2025/6/11 9:36
+     *  @Description: 获取空天模型文本单一维度评估结果
+     */
+    @GetMapping("/calculateIecasTextMetrics")
+    @Logger("获取空天模型文本单一维度评估结果")
+    public CommonResult calculateIecasTextMetrics(String predPath, String gtPath){
+        SubMetricsResult result = EntityMetricsUtils.calculateIecasTextMetrics(predPath, gtPath);
+        return new CommonResult().data(result).success();
+    }
 }

@@ -46,6 +46,11 @@ public class SubMetricsResult {
     private double FP;
 
     /**
+     *  正确预测负例的个数
+     */
+    private double TN;
+
+    /**
      * 实际类别中没有的实体数量
      */
     private double FN;

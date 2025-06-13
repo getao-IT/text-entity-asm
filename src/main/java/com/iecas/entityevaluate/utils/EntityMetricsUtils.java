@@ -1,14 +1,13 @@
 package com.iecas.entityevaluate.utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iecas.entityevaluate.pojo.entity.EntityInfo;
 import com.iecas.entityevaluate.pojo.entity.MetricsResult;
 import com.iecas.entityevaluate.pojo.entity.SubMetricsResult;
+import com.iecas.entityevaluate.pojo.entity.TextIdentifyEntity;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -494,5 +493,81 @@ public class EntityMetricsUtils {
             resultList.add(subResult);
         }
         return resultList;
+    }
+
+
+    /**
+     *  @author: getao
+     *  @Date: 2025/6/11 14:43
+     *  @Description: 获取空天模型文本单一维度评估结果
+     */
+    public static SubMetricsResult calculateIecasTextMetrics(String prePath, String gtPath) {
+        List<TextIdentifyEntity> predictedEntities = fileToEntity(prePath);
+        List<TextIdentifyEntity> actualEntities = fileToEntity(gtPath);
+
+        if (predictedEntities == null || actualEntities == null) {
+            return null;
+        }
+
+        // 使用 Set 来存储实际和预测的实体，方便进行去重和对比
+        Set<TextIdentifyEntity> predictedSet = new HashSet<>(predictedEntities);
+        Set<TextIdentifyEntity> actualSet = new HashSet<>(actualEntities);
+
+        // 计算 TP, FP, FN
+        int TP = 0; // 真正例
+        int FP = 0; // 假正例
+        int FN = 0; // 假负例
+        int TN = 0; // 真负例
+
+        // 计算 TP 和 FP
+        for (TextIdentifyEntity predicted : predictedSet) {
+            if (actualSet.contains(predicted)) {
+                TP++; // 如果预测和实际都包含这个实体，是 TP
+            } else {
+                FP++; // 如果预测有该实体，但实际没有，是 FP
+            }
+        }
+
+        // 计算 FN
+        for (TextIdentifyEntity actual : actualSet) {
+            if (!predictedSet.contains(actual)) {
+                FN++; // 如果实际有该实体，但预测没有，是 FN
+            }
+        }
+
+        // 计算 TN (总的实体数量减去 TP, FP, FN)
+        // 假设 TN 可以通过排除 TP, FP, FN 来推算
+        TN = (predictedSet.size() + actualSet.size()) - TP - FP - FN;
+
+        // 计算结果
+        double precision = TP + FP == 0 ? 0.0 : (double) TP / (TP + FP);
+        double recall = TP + FN == 0 ? 0.0 : (double) TP / (TP + FN);
+        double f1 = precision + recall == 0 ? 0.0 : 2 * precision * recall / (precision + recall);
+
+        SubMetricsResult result = new SubMetricsResult();
+        result.setTN(TN);
+        result.setFN(FN);
+        result.setTP(TP);
+        result.setFP(FP);
+        result.setPrecision(precision);
+        result.setRecall(recall);
+        result.setF1(f1);
+        result.calculateAccuracy(TN);
+
+        return result;
+    }
+
+
+    public static List<TextIdentifyEntity> fileToEntity(String filePath) {
+        List<TextIdentifyEntity> entities = null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            entities = objectMapper.readValue(new File(filePath), objectMapper.getTypeFactory()
+                    .constructCollectionType(List.class, TextIdentifyEntity.class));
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("文件 {} 转换内容为Entity时出现错误...", filePath);
+        }
+        return entities;
     }
 }
