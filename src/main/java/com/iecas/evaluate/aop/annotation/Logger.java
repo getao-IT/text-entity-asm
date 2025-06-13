@@ -5,7 +5,7 @@
  * @Description:
  */
 
-package com.iecas.entityevaluate.aop.annotation;
+package com.iecas.evaluate.aop.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

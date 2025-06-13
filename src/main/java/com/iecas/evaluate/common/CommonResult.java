@@ -5,7 +5,7 @@
  * @Description:
  */
 
- package com.iecas.entityevaluate.common;
+ package com.iecas.evaluate.common;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,9 +13,8 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
-@Data
+ @Data
 public class CommonResult {
 
     /**

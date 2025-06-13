@@ -1,4 +1,4 @@
-package com.iecas.entityevaluate.pojo.dto;
+package com.iecas.evaluate.pojo.dto;
 
 import lombok.Data;
 

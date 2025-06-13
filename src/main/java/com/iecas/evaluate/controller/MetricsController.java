@@ -1,11 +1,11 @@
-package com.iecas.entityevaluate.controller;
+package com.iecas.evaluate.controller;
 
-import com.iecas.entityevaluate.aop.annotation.Logger;
-import com.iecas.entityevaluate.common.CommonResult;
-import com.iecas.entityevaluate.pojo.dto.ParamsDTO;
-import com.iecas.entityevaluate.pojo.entity.MetricsResult;
-import com.iecas.entityevaluate.pojo.entity.SubMetricsResult;
-import com.iecas.entityevaluate.utils.EntityMetricsUtils;
+import com.iecas.evaluate.aop.annotation.Logger;
+import com.iecas.evaluate.common.CommonResult;
+import com.iecas.evaluate.pojo.dto.ParamsDTO;
+import com.iecas.evaluate.pojo.entity.MetricsResult;
+import com.iecas.evaluate.pojo.entity.SubMetricsResult;
+import com.iecas.evaluate.utils.EntityMetricsUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**

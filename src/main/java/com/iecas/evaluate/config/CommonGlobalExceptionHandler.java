@@ -5,7 +5,7 @@
  * @Description:
  */
 
-package com.iecas.entityevaluate.config;
+package com.iecas.evaluate.config;
 
 
 import lombok.extern.slf4j.Slf4j;

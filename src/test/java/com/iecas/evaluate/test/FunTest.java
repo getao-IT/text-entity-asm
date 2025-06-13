@@ -1,7 +1,7 @@
-package com.iecas.entityevaluate.test;
+package com.iecas.evaluate.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iecas.entityevaluate.pojo.entity.TextIdentifyEntity;
+import com.iecas.evaluate.pojo.entity.TextIdentifyEntity;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

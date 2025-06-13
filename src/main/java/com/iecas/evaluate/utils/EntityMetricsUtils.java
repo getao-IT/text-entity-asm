@@ -1,10 +1,10 @@
-package com.iecas.entityevaluate.utils;
+package com.iecas.evaluate.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iecas.entityevaluate.pojo.entity.EntityInfo;
-import com.iecas.entityevaluate.pojo.entity.MetricsResult;
-import com.iecas.entityevaluate.pojo.entity.SubMetricsResult;
-import com.iecas.entityevaluate.pojo.entity.TextIdentifyEntity;
+import com.iecas.evaluate.pojo.entity.EntityInfo;
+import com.iecas.evaluate.pojo.entity.MetricsResult;
+import com.iecas.evaluate.pojo.entity.SubMetricsResult;
+import com.iecas.evaluate.pojo.entity.TextIdentifyEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;

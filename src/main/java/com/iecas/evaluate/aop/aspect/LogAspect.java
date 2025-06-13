@@ -5,10 +5,10 @@
  * @Description:
  */
 
-package com.iecas.entityevaluate.aop.aspect;
+package com.iecas.evaluate.aop.aspect;
 
 import com.alibaba.fastjson.JSON;
-import com.iecas.entityevaluate.aop.annotation.Logger;
+import com.iecas.evaluate.aop.annotation.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
 @Component
 public class LogAspect {
 
-    @Pointcut("@annotation(com.iecas.entityevaluate.aop.annotation.Logger)")
+    @Pointcut("@annotation(com.iecas.evaluate.aop.annotation.Logger)")
     public void pointCut(){}
 
 

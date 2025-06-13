@@ -1,4 +1,4 @@
-package com.iecas.entityevaluate.pojo.entity;
+package com.iecas.evaluate.pojo.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

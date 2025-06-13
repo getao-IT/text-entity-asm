@@ -1,4 +1,4 @@
-package com.iecas.entityevaluate.pojo.entity;
+package com.iecas.evaluate.pojo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
